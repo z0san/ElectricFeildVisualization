@@ -1,6 +1,6 @@
 
-int n=10;
-float deltaT=0.0001;
+int n=20;
+float deltaT=0.00005;
 
 ArrayList<PointCharge> pointCharges=new ArrayList<PointCharge>();
 Feild f= new Feild(8.85418782E-12);
@@ -18,11 +18,11 @@ void setup(){
 void draw(){
   background(0);
   //show feild
-  colorMode(HSB);
-  for(var i=0;i<256;i++){
-    for(var j=0;j<256;j++){
+  colorMode(HSB,2*PI,100,100);
+  for(var i=0;i<1024;i++){
+    for(var j=0;j<1024;j++){
       PVector feildVal=f.getFeildAtPosition(new PVector(i,j));
-      set(i,j,color(feildVal.heading(),0,feildVal.mag()*100));
+      set(i,j,color(PI-feildVal.heading(),100,feildVal.mag()*1/20000));
     }
   }
   
@@ -35,4 +35,6 @@ void draw(){
     pc.show();
   }
   
+  
+  saveFrame("A0/####.png");
 }
